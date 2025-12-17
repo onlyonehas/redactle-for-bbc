@@ -2,11 +2,9 @@ import { useState, useMemo, useEffect } from 'react';
 import { Header } from './components/Header';
 import { ArticleView } from './components/ArticleView';
 import { GuessInput } from './components/GuessInput';
-import { getDailyArticle, getEmptyArticle } from './data/articles'; // In real app, use getDailyArticle
-import { cleanWord, isRedacted, tokenize } from './utils/gameLogic';
+import { getDailyArticle, getEmptyArticle } from './data/articles';
 import { HelpModal } from './components/HelpModal';
 import { GuessFeedback } from './components/GuessFeedback';
-import { getDailyArticle, ARTICLES } from './data/articles'; // ARTICLES needed for random pick
 import { cleanWord, isRedacted, tokenize, countOccurrences } from './utils/gameLogic';
 import { usePersistence } from './hooks/usePersistence';
 import { useStats } from './hooks/useStats';
@@ -16,33 +14,21 @@ import { StatsModal } from './components/StatsModal';
 function App() {
   const [article, setArticle] = useState(getEmptyArticle);
   useEffect(()=> {
-    getDailyArticle().then((article)=>setArticle(article));
-  }, []);
-
-  // Store guesses as array in persistence, convert to Set for internal logic
-  const [guessList, setGuessList] = usePersistence<string[]>(`guesses-${article.id}`, []);
-  // Article ID Management - Support Random Play
-  // Default to daily, but allow override via state
-  const [currentArticleId, setCurrentArticleId] = useState<string>(() => {
-    return getDailyArticle().id;
+    getDailyArticle().then((article)=> {
+      setArticle(article);
   });
-
-  const article = useMemo(() =>
-    ARTICLES.find(a => a.id === currentArticleId) || getDailyArticle(),
-    [currentArticleId]);
+  }, []);
 
   // Statistics
   const { stats, recordWin, recordLoss } = useStats(); // Added recordLoss
   const [isStatsOpen, setIsStatsOpen] = useState(false);
   const [lastGameStats, setLastGameStats] = useState<{ guesses: number; globalAverage: number } | null>(null);
 
-  // ... (lines 30-101)
-
   const handleGiveUp = () => {
     if (confirm('Are you sure you want to give up? This will reveal the entire article.')) {
       setHasGivenUp(true);
-      recordLoss(); // Record the loss
-      setGuessList([]); // Clear guesses as requested
+      recordLoss();
+      setGuessList([]);
       setLastGuess(null);
       setHighlightedWord(null);
     }
@@ -50,7 +36,8 @@ function App() {
 
   // Game State
   // Store guesses as OBJECTS { word, count } in persistence
-  const [guessList, setGuessList] = usePersistence<{ word: string, count: number }[]>(`guesses-v2-${article.id}`, []);
+  const [guessList, setGuessList] = useState([]);
+  // const [guessList, setGuessList] = usePersistence<{ word: string, count: number }[]>(`guesses-v2-${article.id}`, []);
   const [isHelpOpen, setIsHelpOpen] = useState(false);
   const [lastGuess, setLastGuess] = useState<{ word: string; count: number } | null>(null);
   const [highlightedWord, setHighlightedWord] = useState<string | null>(null);
@@ -94,22 +81,21 @@ function App() {
   };
 
   const startNewGame = (random: boolean = true) => {
-    let nextId = getDailyArticle().id;
-    if (random) {
-      // Pick random article different from current
-      const others = ARTICLES.filter(a => a.id !== currentArticleId);
-      if (others.length > 0) {
-        const randomArticle = others[Math.floor(Math.random() * others.length)];
-        nextId = randomArticle.id;
-      }
-    }
+    let nextId = article.id;
+    // if (random) {
+    //   // Pick random article different from current
+    //   const others = ARTICLES.filter(a => a.id !== currentArticleId);
+    //   if (others.length > 0) {
+    //     const randomArticle = others[Math.floor(Math.random() * others.length)];
+    //     nextId = randomArticle.id;
+    //   }
+    // }
 
     // Reset persistent data for this article so it's a "New Game"
     // Note: We use the key format from usePersistence
     localStorage.removeItem(`guesses-v2-${nextId}`);
     localStorage.removeItem(`stats-won-${nextId}`);
 
-    setCurrentArticleId(nextId);
     setLastGuess(null);
     setHighlightedWord(null);
     setHasGivenUp(false);
