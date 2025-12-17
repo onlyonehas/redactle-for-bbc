@@ -9,9 +9,11 @@ interface GuessHistoryProps {
     guesses: Guess[];
     onHighlight?: (word: string) => void;
     highlightedWord?: string | null;
+    onToggleHint: () => void;
+    isHintMode: boolean;
 }
 
-export const GuessHistory: React.FC<GuessHistoryProps> = ({ guesses, onHighlight, highlightedWord }) => {
+export const GuessHistory: React.FC<GuessHistoryProps> = ({ guesses, onHighlight, highlightedWord, onToggleHint, isHintMode }) => {
     const sortedGuesses = useMemo(() => {
         // Map to include original index (1-based)
         const withIndex = guesses.map((g, index) => ({ ...g, id: index + 1 }));
@@ -30,9 +32,33 @@ export const GuessHistory: React.FC<GuessHistoryProps> = ({ guesses, onHighlight
             minWidth: '240px',
             fontSize: '0.9rem'
         }}>
-            <h3 style={{ margin: '0 0 1rem 0', borderBottom: '1px solid #ddd', paddingBottom: '0.5rem', fontSize: '1.2rem', fontWeight: 700 }}>
-                Your Guesses ({guesses.length})
-            </h3>
+            <div style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                borderBottom: '1px solid #ddd',
+                paddingBottom: '0.5rem',
+                marginBottom: '1rem'
+            }}>
+                <h3 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 700 }}>
+                    Your Guesses ({guesses.length})
+                </h3>
+                <button
+                    onClick={onToggleHint}
+                    title="Click, then click a word to reveal it"
+                    style={{
+                        padding: '0.3rem 0.6rem',
+                        fontSize: '0.8rem',
+                        cursor: 'pointer',
+                        backgroundColor: isHintMode ? '#ffd700' : 'transparent',
+                        color: isHintMode ? 'black' : '#bb1919',
+                        border: '1px solid #bb1919',
+                        fontWeight: isHintMode ? 'bold' : 'normal'
+                    }}
+                >
+                    Hint
+                </button>
+            </div>
 
             <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                 <thead>

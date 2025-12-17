@@ -61,6 +61,8 @@ const Token: React.FC<{
     const cursor = isHintMode && hidden ? 'crosshair' : (hidden ? 'pointer' : 'default');
     const showCount = isRevealed;
 
+    const obfiscatedText = hidden ? token.text.replaceAll(/./g, "*") : token.text;
+
     return (
         <span
             className={classes}
@@ -68,7 +70,7 @@ const Token: React.FC<{
             onClick={handleClick}
             title={hidden ? (isHintMode ? "Click to reveal word" : "Click to see letter count") : undefined}
         >
-            <span style={{ opacity: hidden && showCount ? 0 : 1 }}>{token.text}</span>
+            <span style={{ opacity: hidden && showCount ? 0 : 1 }}>{hidden ? obfiscatedText : token.text}</span>
             {hidden && showCount && (
                 <span style={{
                     position: 'absolute',

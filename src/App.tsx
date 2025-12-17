@@ -174,8 +174,6 @@ function App() {
         onNewGame={() => startNewGame(true)}
         onDailyGame={() => startDailyGame()}
         onGiveUp={handleGiveUp}
-        onToggleHint={() => setIsHintMode(prev => !prev)}
-        isHintMode={isHintMode}
       />
 
       {isHintMode && (
@@ -229,6 +227,8 @@ function App() {
               setRevealedTokenKey(null); // Clear reveal when highlighting from sidebar
             }}
             highlightedWord={highlightedWord}
+            onToggleHint={() => setIsHintMode(prev => !prev)}
+            isHintMode={isHintMode}
           />
         </aside>
       </div>

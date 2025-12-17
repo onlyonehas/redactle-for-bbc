@@ -6,11 +6,9 @@ interface HeaderProps {
     onNewGame: () => void;
     onDailyGame: () => void;
     onGiveUp: () => void;
-    onToggleHint: () => void;
-    isHintMode: boolean;
 }
 
-export const Header: React.FC<HeaderProps> = ({ articleId, headlineRevealed, onHelp, onStats, onNewGame, onDailyGame, onGiveUp, onToggleHint, isHintMode }) => {
+export const Header: React.FC<HeaderProps> = ({ articleId, headlineRevealed, onHelp, onStats, onNewGame, onDailyGame, onGiveUp }) => {
     return (
         <header style={{
             backgroundColor: '#bb1919', // BBC Red
@@ -64,16 +62,8 @@ export const Header: React.FC<HeaderProps> = ({ articleId, headlineRevealed, onH
                     alignItems: 'center'
                 }}>
                     <span>#{articleId}</span>
-                    <button
-                        onClick={onToggleHint}
-                        className="header-btn"
-                        style={{ backgroundColor: isHintMode ? '#ffd700' : 'transparent', color: isHintMode ? 'black' : 'white', fontWeight: isHintMode ? 'bold' : 'normal' }}
-                        title="Click, then click a word to reveal it"
-                    >
-                        Hint
-                    </button>
                     <button onClick={onStats} className="header-btn" title="Statistics">Stats</button>
-                    <button onClick={onHelp} className="header-btn">Help</button>
+                    <button onClick={onHelp} className="header-btn">How to play</button>
                     <button onClick={onNewGame} className="header-btn">New Game</button>
                     <button onClick={onDailyGame} className="header-btn">Today's Game</button>
                     {!headlineRevealed && (
