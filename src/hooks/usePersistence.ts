@@ -11,6 +11,17 @@ export function usePersistence<T>(key: string, initialValue: T) {
         }
     });
 
+    // Reload from storage when key changes
+    useEffect(() => {
+        try {
+            const item = window.localStorage.getItem(key);
+            setStoredValue(item ? JSON.parse(item) : initialValue);
+        } catch (error) {
+            console.error(error);
+            setStoredValue(initialValue);
+        }
+    }, [key, initialValue]);
+
     const setValue = (value: T | ((val: T) => T)) => {
         try {
             const valueToStore = value instanceof Function ? value(storedValue) : value;
