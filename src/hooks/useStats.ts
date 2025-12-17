@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { usePersistence } from './usePersistence';
 
 export interface GameStats {
@@ -21,7 +22,7 @@ const INITIAL_STATS: GameStats = {
 export const useStats = () => {
     const [stats, setStats] = usePersistence<GameStats>('redactle-stats', INITIAL_STATS);
 
-    const recordWin = (guessCount: number) => {
+    const recordWin = useCallback((guessCount: number) => {
         setStats(prev => {
             const newCurrentStreak = prev.currentStreak + 1;
 
@@ -46,15 +47,15 @@ export const useStats = () => {
                 }
             };
         });
-    };
+    }, [setStats]);
 
-    const recordLoss = () => {
+    const recordLoss = useCallback(() => {
         setStats(prev => ({
             ...prev,
             gamesPlayed: prev.gamesPlayed + 1,
             currentStreak: 0
         }));
-    };
+    }, [setStats]);
 
     return { stats, recordWin, recordLoss };
 };

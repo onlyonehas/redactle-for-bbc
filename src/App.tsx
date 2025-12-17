@@ -14,10 +14,11 @@ import { LoadingSpinner } from './components/LoadingSpinner';
 
 function App() {
   // Article ID Management - Support Random Play
-  // Default to daily, but allow override via state
-  const [currentArticleId, setCurrentArticleId] = useState<string>(() => {
-    return getDailyArticle().id;
-  });
+  // Persist article ID so refreshing the page keeps you on the same article
+  const [currentArticleId, setCurrentArticleId] = usePersistence<string>(
+    'current-article-id',
+    getDailyArticle().id
+  );
   const [isLoading, setIsLoading] = useState(false);
 
   const article = useMemo(() =>
@@ -136,6 +137,9 @@ function App() {
     setIsHintMode(false);
     setRevealedTokenKey(null);
     window.scrollTo(0, 0);
+
+    // Reset loading state after a brief delay to allow state updates to propagate
+    setTimeout(() => setIsLoading(false), 100);
   };
 
 
