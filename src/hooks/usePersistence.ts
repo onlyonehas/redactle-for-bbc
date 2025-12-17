@@ -32,7 +32,15 @@ export function usePersistence<T>(key: string, initialValue: T) {
 
             setStoredValue(prevStoredValue => {
                 const valueToStore = value instanceof Function ? value(prevStoredValue) : value;
-                window.localStorage.setItem(key, JSON.stringify(valueToStore));
+
+                // Write to localStorage in a separate try-catch to ensure errors are caught
+                try {
+                    window.localStorage.setItem(key, JSON.stringify(valueToStore));
+                } catch (storageError) {
+                    console.error('Failed to write to localStorage:', storageError);
+                    // Continue with state update even if storage fails
+                }
+
                 return valueToStore;
             });
         } catch (error) {

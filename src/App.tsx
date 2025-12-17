@@ -155,7 +155,7 @@ function App() {
 
   // Check win condition
   const headlineTokens = useMemo(() => tokenize(article.headline), [article]);
-  const isHeadlineSolved = headlineTokens
+  const isHeadlineSolved = article.index >= 0 && headlineTokens
     .filter(t => t.isWord)
     .every(t => !isRedacted(t.text, guesses));
 
