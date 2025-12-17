@@ -36,8 +36,7 @@ function App() {
 
   // Game State
   // Store guesses as OBJECTS { word, count } in persistence
-  const [guessList, setGuessList] = useState([]);
-  // const [guessList, setGuessList] = usePersistence<{ word: string, count: number }[]>(`guesses-v2-${article.id}`, []);
+  const [guessList, setGuessList] = usePersistence<{ word: string, count: number }[]>(`guesses-v2-${article.id}`, []);
   const [isHelpOpen, setIsHelpOpen] = useState(false);
   const [lastGuess, setLastGuess] = useState<{ word: string; count: number } | null>(null);
   const [highlightedWord, setHighlightedWord] = useState<string | null>(null);

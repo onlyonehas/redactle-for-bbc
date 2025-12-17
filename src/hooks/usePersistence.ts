@@ -20,7 +20,7 @@ export function usePersistence<T>(key: string, initialValue: T) {
             console.error(error);
             setStoredValue(initialValue);
         }
-    }, [key, initialValue]);
+    }, [key]);
 
     const setValue = (value: T | ((val: T) => T)) => {
         try {
