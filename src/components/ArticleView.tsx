@@ -29,21 +29,14 @@ const Token: React.FC<{
         return <span>{token.text}</span>;
     }
 
-    // "Give Up" reveals everything
     const hidden = !isGiveUp && isRedacted(token.text, guesses);
 
-    // clean value for comparison
     const tokenClean = token.clean || token.text.toLowerCase().replace(/[^a-z0-9]/g, '');
 
-    // Highlight if:
-    // 1. Matched the highlightedWord
-    // 2. AND is NOT hidden (so we don't cheat by highlighting hidden structure words if that ever happens, though usually guesses are only for words)
-    // Actually, traditionally if you guess 'the', it highlights 'the'.
     const isHighlighted = highlightedWord && tokenClean === highlightedWord;
 
     const classes = hidden ? "redacted" : "revealed";
 
-    // Style override
     const style: React.CSSProperties = isHighlighted ? {
         backgroundColor: 'var(--bbc-highlight)',
         color: 'var(--bbc-text)',
@@ -54,46 +47,18 @@ const Token: React.FC<{
 
     // Toggle handling
     const handleClick = (e: React.MouseEvent) => {
-        e.stopPropagation(); // Stop propagation to prevent background click from resetting
-
+        e.stopPropagation();
         if (isHintMode && hidden && onWordClick) {
             onWordClick(token.text);
             return;
         }
 
         if (hidden && onToggleReveal) {
-            // If already revealed, we could toggle off? Or just set it.
-            // Behavior: "reveal resets if another selected".
-            // If I click the *same* one, should it close?
-            // Redactle.net: clicking same one toggles off.
-            if (isRevealed) {
-                // But wait, if we call onToggleReveal(''), it clears.
-                // We need to know if we are toggle logic.
-                // Let's passed down function handle it or we pass explicit null?
-                // Let's assume onToggleReveal handles the "set to this key" logic.
-                // If we want toggle off behavior:
-                // We can pass `tokenKey` if we want to turn on.
-                // But we need to know if we are turning off. `isRevealed` tells us!
-                // Wait, passing back to parent.
-                // Let's pass `null` if isRevealed, else `tokenKey`.
-                // Actually parent setter `onRevealToken` expects (key | null).
-                // BUT: Typescript signature of `onToggleReveal` in my props above says `(key: string)`.
-                // Let's fix signature.
-                // Actually, let's keep it simple: handleClick toggles.
-
-                // However, "reset if another word is selected" implies exclusivity.
-                // "reset if clicked elsewhere".
-
-                // If I click THIS one, and it is ACTIVE -> Close it on toggle OFF?
-            }
-            onToggleReveal(tokenKey); // Parent decides toggle logic
+            onToggleReveal(tokenKey);
         }
     };
 
-    // Hint mode cursor
     const cursor = isHintMode && hidden ? 'crosshair' : (hidden ? 'pointer' : 'default');
-
-    // Determine whether to show overlay
     const showCount = isRevealed;
 
     return (

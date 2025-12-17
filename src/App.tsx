@@ -15,14 +15,23 @@ import { LoadingSpinner } from './components/LoadingSpinner';
 function App() {
   const [article, setArticle] = useState(getEmptyArticle);
   const [isLoading, setIsLoading] = useState(true);
-  const [articleIndex, setArticleIndex] = useState(-1);
+  // const [articleIndex, setArticleIndex] = useState(-1);
+  const [articleIndex, setArticleIndex] = usePersistence<number>(`current-article-index`, -1);
+
   useEffect(() => {
-    getDailyArticle().then((article) => {
-      setArticle(article);
-      console.log(article)
-      setArticleIndex(article.index);
-      setIsLoading(false);
-    });
+    if (articleIndex === -1) {
+      getDailyArticle().then((article) => {
+        setArticle(article);
+        setArticleIndex(article.index);
+        setIsLoading(false);
+      });
+    } else {
+      getArticleByID(articleIndex).then((article) => {
+        setArticle(article);
+        setIsLoading(false);
+      });
+    }
+
   }, []);
 
   // Statistics
@@ -84,6 +93,22 @@ function App() {
       setIsHintMode(false); // Turn off after use
     }
   };
+
+  const startDailyGame = () => {
+    getDailyArticle().then((article) => {
+      setArticle(article);
+      setArticleIndex(article.index);
+      setIsLoading(false);
+    });
+
+    setLastGuess(null);
+    setHighlightedWord(null);
+    setHasGivenUp(false);
+    setIsStatsOpen(false);
+    setIsHintMode(false);
+    setRevealedTokenKey(null);
+    window.scrollTo(0, 0);
+  }
 
   const startNewGame = (random: boolean = true) => {
     setIsLoading(true);
@@ -147,6 +172,7 @@ function App() {
         onHelp={() => setIsHelpOpen(true)}
         onStats={() => setIsStatsOpen(true)}
         onNewGame={() => startNewGame(true)}
+        onDailyGame={() => startDailyGame()}
         onGiveUp={handleGiveUp}
         onToggleHint={() => setIsHintMode(prev => !prev)}
         isHintMode={isHintMode}
