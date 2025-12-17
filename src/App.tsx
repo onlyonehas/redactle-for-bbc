@@ -132,7 +132,8 @@ function App() {
     if (!window.confirm("Are you sure you want to start a new game?")) return;
 
     setIsLoading(true);
-    getRandomArticle().then((article) => {
+    const currentIdx = article.index !== undefined ? article.index : -1;
+    getRandomArticle(currentIdx).then((article) => {
       // Reset persistent data for this article
       localStorage.removeItem(`guesses-v2-${article.index}`);
       localStorage.removeItem(`stats-won-${article.index}`);
@@ -237,6 +238,8 @@ function App() {
               setRevealedTokenKey(null);
             }}
             highlightedWord={highlightedWord}
+            onToggleHint={() => setIsHintMode(prev => !prev)}
+            isHintMode={isHintMode}
           />
         </aside>
       </div>
