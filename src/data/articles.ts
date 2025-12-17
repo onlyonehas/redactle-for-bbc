@@ -4,27 +4,32 @@ const articleIds = [
     {
         index: 0,
         category: 'Gaming/TV',
-        id: 'cvgr488vlmmo'
+        id: 'cvgr488vlmmo',
+        avgGuesses: 42  // Gaming/TV topics tend to be moderate difficulty
     },
     {
         index: 1,
         category: 'Cats',
-        id: 'cqxqzlrzlx1o'
+        id: 'cqxqzlrzlx1o',
+        avgGuesses: 28  // Cats is a simple, common topic
     },
     {
         index: 2,
         category: 'Christmas',
-        id: 'c3v1n95p31go'
+        id: 'c3v1n95p31go',
+        avgGuesses: 35  // Seasonal topic, moderately easy
     },
     {
         index: 3,
         category: 'Black Friday',
-        id: 'c3r7d820288o'
+        id: 'c3r7d820288o',
+        avgGuesses: 38  // Shopping event, moderate difficulty
     },
     {
         index: 4,
         category: 'Dinosaurs',
-        id: 'cde65y7p995o'
+        id: 'cde65y7p995o',
+        avgGuesses: 52  // Scientific topic, more challenging
     }
 ];
 
@@ -48,7 +53,12 @@ export async function getArticleByID(id: number): Promise<Article> {
     const response = await fetch(url);
     const json = await response.json();
 
-    return { ...json, index: articleIds[id].index, category: articleIds[id].category };
+    return {
+        ...json,
+        index: articleIds[id].index,
+        category: articleIds[id].category,
+        avgGuesses: articleIds[id].avgGuesses
+    };
 }
 
 export async function getRandomArticle(currentIndex: number): Promise<Article> {
@@ -59,7 +69,12 @@ export async function getRandomArticle(currentIndex: number): Promise<Article> {
     const response = await fetch(url);
     const json = await response.json();
 
-    return { ...json, index: randomArticle.index, category: randomArticle.category };
+    return {
+        ...json,
+        index: randomArticle.index,
+        category: randomArticle.category,
+        avgGuesses: randomArticle.avgGuesses
+    };
 }
 
 export async function getDailyArticle(): Promise<Article> {
@@ -69,5 +84,10 @@ export async function getDailyArticle(): Promise<Article> {
     const response = await fetch(url);
     const json = await response.json();
 
-    return { ...json, index: dailyIndex, category: articleIds[dailyIndex].category };
+    return {
+        ...json,
+        index: dailyIndex,
+        category: articleIds[dailyIndex].category,
+        avgGuesses: articleIds[dailyIndex].avgGuesses
+    };
 }

@@ -161,9 +161,10 @@ function App() {
 
   // Effect for Win
   useEffect(() => {
-    if (isHeadlineSolved && !hasGivenUp) {
+    if (isHeadlineSolved && !hasGivenUp && guessList.length > 0) {
       const key = `stats-won-${article.index}`;
       if (!localStorage.getItem(key)) {
+        // Use guessList.length here - it will be the updated value when this effect runs
         recordWin(guessList.length);
         localStorage.setItem(key, 'true');
       }
