@@ -8,7 +8,7 @@ import { submitScore } from '../utils/submit-score';
  *   - game: string
  *   - date?: string
  */
-export function SubmitScoreButton({ score, game, date }: any) {
+export function SubmitScoreButton({ score, game, username, date }: any) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
@@ -18,7 +18,7 @@ export function SubmitScoreButton({ score, game, date }: any) {
     setError(null);
     setSuccess(false);
     try {
-      const response = await submitScore({ score, game, date });
+      const response = await submitScore({ score, game, username, date });
       if (!response.ok) {
         throw new Error('Failed to submit score');
       }
@@ -32,7 +32,7 @@ export function SubmitScoreButton({ score, game, date }: any) {
 
   return (
     <div>
-      <button type="button" onClick={handleClick} disabled={loading}>
+      <button type="button" onClick={handleClick} disabled={loading || username === '' || !username}>
         {loading ? 'Submitting...' : 'Submit Score'}
       </button>
       {error && <div style={{ color: 'red' }}>{error}</div>}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { usePersistence } from '../hooks/usePersistence';
 import type { GameStats } from '../hooks/useStats';
+import { SubmitScoreButton } from './submit-score-button';
 
 interface StatsModalProps {
     isOpen: boolean;
@@ -159,9 +160,13 @@ export const StatsModal: React.FC<StatsModalProps> = ({ isOpen, onClose, stats, 
                     >
                         Close
                     </button>
-                    <button>
-                        Publish score to leaderboard
-                    </button>
+                    {lastGame && (
+                        <SubmitScoreButton 
+                        score={lastGame.guesses} 
+                        game={'redactle'} 
+                        username={username} 
+                        date={new Date().toISOString().split('T')[0]} />
+                    )}
                     {onNewGame && (
                         <button
                             onClick={() => {
