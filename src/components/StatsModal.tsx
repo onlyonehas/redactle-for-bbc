@@ -133,6 +133,7 @@ export const StatsModal: React.FC<StatsModalProps> = ({ isOpen, onClose, stats, 
                             padding: '0.8rem 1.5rem',
                             border: '1px solid #ccc',
                             backgroundColor: 'white',
+                            color: '#bb1919',
                             cursor: 'pointer',
                             fontSize: '1rem'
                         }}
