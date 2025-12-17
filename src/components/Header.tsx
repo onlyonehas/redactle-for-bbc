@@ -1,23 +1,31 @@
-import React from 'react';
-
 interface HeaderProps {
     articleId: string;
     headlineRevealed: boolean;
+    onHelp: () => void;
+    onStats: () => void;
+    onNewGame: () => void;
+    onGiveUp: () => void;
+    onToggleHint: () => void;
+    isHintMode: boolean;
 }
 
-export const Header: React.FC<HeaderProps> = ({ articleId, headlineRevealed }) => {
+export const Header: React.FC<HeaderProps> = ({ articleId, headlineRevealed, onHelp, onStats, onNewGame, onGiveUp, onToggleHint, isHintMode }) => {
     return (
         <header style={{
             backgroundColor: '#bb1919', // BBC Red
             color: 'white',
             borderBottom: '1px solid #991414',
             marginBottom: '1.5rem',
+            fontFamily: 'Helvetica, Arial, sans-serif'
         }}>
-            <div className="container" style={{
+            <div style={{
+                maxWidth: '1100px',
+                margin: '0 auto',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 height: '4rem',
+                padding: '0 1rem'
             }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                     {/* BBC Logo Block */}
@@ -55,14 +63,35 @@ export const Header: React.FC<HeaderProps> = ({ articleId, headlineRevealed }) =
                     alignItems: 'center'
                 }}>
                     <span>#{articleId}</span>
-                    <button style={{
-                        backgroundColor: 'transparent',
-                        border: '1px solid white',
-                        fontSize: '0.8rem',
-                        padding: '0.4em 0.8em'
-                    }}>How to Play</button>
+                    <button
+                        onClick={onToggleHint}
+                        className="header-btn"
+                        style={{ backgroundColor: isHintMode ? '#ffd700' : 'transparent', color: isHintMode ? 'black' : 'white', fontWeight: isHintMode ? 'bold' : 'normal' }}
+                        title="Click, then click a word to reveal it"
+                    >
+                        Hint
+                    </button>
+                    <button onClick={onStats} className="header-btn" title="Statistics">Stats</button>
+                    <button onClick={onHelp} className="header-btn">Help</button>
+                    <button onClick={onNewGame} className="header-btn">New Game</button>
+                    {!headlineRevealed && (
+                        <button onClick={onGiveUp} className="header-btn">Give Up</button>
+                    )}
                 </div>
             </div>
+            <style>{`
+                .header-btn {
+                    background-color: transparent;
+                    border: 1px solid white;
+                    font-size: 0.8rem;
+                    padding: 0.4em 0.8em;
+                    cursor: pointer;
+                    color: white;
+                }
+                .header-btn:hover {
+                    background-color: rgba(255,255,255,0.1);
+                }
+            `}</style>
         </header>
     );
 };

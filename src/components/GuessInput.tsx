@@ -27,7 +27,8 @@ export const GuessInput: React.FC<GuessInputProps> = ({ onGuess, guessCount }) =
             borderTop: '1px solid #ccc',
             display: 'flex',
             justifyContent: 'center',
-            boxShadow: '0 -2px 10px rgba(0,0,0,0.1)'
+            boxShadow: '0 -2px 10px rgba(0,0,0,0.1)',
+            zIndex: 50
         }}>
             <form onSubmit={handleSubmit} style={{
                 display: 'flex',

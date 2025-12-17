@@ -1,45 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --bbc-red: #bb1919;
+  --bbc-dark-red: #991414;
   --bbc-black: #121212;
-  --bbc-dark-grey: #e9e9e9;
-  --bbc-light-grey: #fdfdfd;
   --bbc-white: #ffffff;
+  --bbc-gray: #505050;
   --bbc-text: #222222;
-  --bbc-border: #dcdcdc;
+  --bbc-light-gray: #fdfdfd;
+  --bbc-border: #e2e2e2;
   --bbc-highlight: #fff3c4;
-  
-  font-family: Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color: var(--bbc-text);
-  background-color: var(--bbc-white);
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* Light yellow highlight */
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center; /* Adjusted for full screen layout typically, but for this app top alignment is better */
-  /* Resetting typical vite center alignment if present */
-  display: block; 
-  min-width: 320px;
-  min-height: 100vh;
+  font-family: 'ReithSans', 'Helvetica', 'Arial', sans-serif;
+  color: var(--bbc-text);
+  background-color: var(--bbc-white);
+  line-height: 1.6;
+  /* Increased for BBC spacing */
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: 2.75rem;
+  /* Larger */
   line-height: 1.1;
   font-weight: 700;
   margin-bottom: 0.5em;
+  color: var(--bbc-text);
+}
+
+/* Layout Grid for Desktop */
+.game-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 900px) {
+  .game-layout {
+    grid-template-columns: 1fr 250px;
+    /* Article + History Sidebar */
+    align-items: start;
+  }
+}
+
+.article-container {
+  max-width: 720px;
+  /* BBC Grid width */
+  margin: 0 auto;
+  /* Center if single column, or align logic in grid */
 }
 
 button {
-  border-radius: 0; /* BBC style is square/sharp */
+  border-radius: 0;
+  /* BBC style is square/sharp */
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
   font-size: 1em;
@@ -73,12 +94,25 @@ button:focus-visible {
 .revealed {
   background-color: transparent;
   color: var(--bbc-text);
-  font-weight: bold; /* Optional to highlight revealed */
+  font-weight: bold;
 }
 
 /* Layout Utilities */
 .container {
-  max-width: 800px;
+  max-width: 100%;
+  /* Flexible now */
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0;
+}
+
+.desktop-history {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .desktop-history {
+    display: block;
+    position: sticky;
+    top: 2rem;
+  }
 }

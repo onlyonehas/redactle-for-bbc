@@ -4,6 +4,7 @@ export interface Article {
   category: string;
   date: string;
   content: string[]; // Array of paragraphs
+  avgGuesses?: number; // Mock data for "Global Average"
 }
 
 export const COMMON_WORDS = new Set([
@@ -47,11 +48,34 @@ export function tokenize(text: string): WordToken[] {
   const regex = /([a-zA-Z0-9]+)|([^a-zA-Z0-9]+)/g;
   let match;
   while ((match = regex.exec(text)) !== null) {
-      if (match[1]) {
-          tokens.push({ text: match[1], isWord: true, clean: match[1].toLowerCase() });
-      } else if (match[2]) {
-          tokens.push({ text: match[2], isWord: false });
-      }
+    if (match[1]) {
+      tokens.push({ text: match[1], isWord: true, clean: match[1].toLowerCase() });
+    } else if (match[2]) {
+      tokens.push({ text: match[2], isWord: false });
+    }
   }
   return tokens;
+}
+
+export function countOccurrences(article: Article, word: string): number {
+  const cleanFn = (text: string) => text.toLowerCase().replace(/[^a-z0-9]/g, '');
+  const target = cleanFn(word);
+
+  if (!target) return 0;
+
+  let count = 0;
+
+  // Check headline
+  tokenize(article.headline).forEach(t => {
+    if (t.isWord && cleanFn(t.text) === target) count++;
+  });
+
+  // Check content
+  article.content.forEach(paragraph => {
+    tokenize(paragraph).forEach(t => {
+      if (t.isWord && cleanFn(t.text) === target) count++;
+    });
+  });
+
+  return count;
 }
