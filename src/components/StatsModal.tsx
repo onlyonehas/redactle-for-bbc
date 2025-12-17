@@ -130,7 +130,7 @@ export const StatsModal: React.FC<StatsModalProps> = ({ isOpen, onClose, stats, 
                     })}
                 </div>
 
-                <div style={{ marginBottom: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                {lastGame && (<div style={{ marginBottom: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                     <label style={{ fontSize: '0.9rem', color: '#666' }}>Username for Leaderboard:</label>
                     <input
                         type="text"
@@ -144,7 +144,7 @@ export const StatsModal: React.FC<StatsModalProps> = ({ isOpen, onClose, stats, 
                             fontSize: '1rem'
                         }}
                     />
-                </div>
+                </div>)}
 
                 <div style={{ display: 'flex', gap: '1rem', justifyContent: 'space-between', width: '100%' }}>
                     <button
