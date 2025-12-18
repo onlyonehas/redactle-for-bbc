@@ -49,7 +49,7 @@ const Token: React.FC<{
     // Toggle handling
     const handleClick = (e: React.MouseEvent) => {
         e.stopPropagation();
-        if (isHintMode && hidden && onWordClick) {
+        if (isHintMode && hidden && isHintable && onWordClick) {
             onWordClick(token.text);
             return;
         }
@@ -107,9 +107,8 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, guesses, high
 
     const hiddenHeadlineWords = new Set(
         headlineTokens
-            .filter(t => t.isWord)
+            .filter(t => t.isWord && isRedacted(t.text, guesses))
             .map(t => (t.clean || t.text.toLowerCase().replace(/[^a-z0-9]/g, '')))
-            .filter(w => !guesses.has(w))
     );
 
     const nonHintableWords = hiddenHeadlineWords.size === 1 ? hiddenHeadlineWords : new Set<string>();
