@@ -6,57 +6,57 @@ export interface ArticleMetadata {
 }
 
 export const articleList: ArticleMetadata[] = [
-    { index: 0, category: 'Entertainment', id: 'news/articles/cvgr488vlmmo', avgGuesses: 42 },
-    { index: 1, category: 'Science', id: 'news/articles/cqxqzlrzlx1o', avgGuesses: 28 },
-    { index: 2, category: 'Events', id: 'news/articles/c3v1n95p31go', avgGuesses: 35 },
-    { index: 3, category: 'Business', id: 'news/articles/c3r7d820288o', avgGuesses: 38 },
-    { index: 4, category: 'Science', id: 'news/articles/cde65y7p995o', avgGuesses: 52 },
-    { index: 5, category: 'World', id: 'news/articles/c208qvyq248o', avgGuesses: 45 },
-    { index: 6, category: 'UK', id: 'news/articles/c208zd92780o', avgGuesses: 40 },
-    { index: 7, category: 'UK', id: 'news/uk-61585886', avgGuesses: 40 },
-    { index: 8, category: 'Tech', id: 'news/articles/c20k40x8vdvo', avgGuesses: 42 },
-    { index: 9, category: 'Business', id: 'news/articles/c23e9e3e55no', avgGuesses: 38 },
-    { index: 10, category: 'Politics', id: 'news/articles/c23ezd053j5o', avgGuesses: 46 },
-    { index: 11, category: 'Science', id: 'news/articles/c24689l0570o', avgGuesses: 50 },
-    // Expanded List Starts Here
-    { index: 12, category: 'World', id: 'news/articles/c04v3y1w3q1o', avgGuesses: 45 },
-    { index: 13, category: 'UK', id: 'news/articles/c04vxd5nr31o', avgGuesses: 40 },
-    { index: 14, category: 'Business', id: 'news/articles/c04vxde639wo', avgGuesses: 38 },
-    { index: 15, category: 'Tech', id: 'news/articles/c058vy46231o', avgGuesses: 42 },
-    { index: 16, category: 'Science', id: 'news/articles/c0750djl0zgo', avgGuesses: 50 },
-    { index: 17, category: 'World', id: 'news/articles/c0750m9ze3yo', avgGuesses: 48 },
-    { index: 18, category: 'UK', id: 'news/articles/c075j3ezvrgo', avgGuesses: 35 },
-    { index: 19, category: 'Tech', id: 'news/articles/c075jyvn8ljo', avgGuesses: 44 },
-    { index: 20, category: 'Business', id: 'news/articles/c075m75p2ero', avgGuesses: 39 },
-    { index: 21, category: 'World', id: 'news/articles/c0kdr3vdxx1o', avgGuesses: 52 },
-    { index: 22, category: 'UK', id: 'news/articles/c0kdrpg8vgyo', avgGuesses: 41 },
-    { index: 23, category: 'Politics', id: 'news/articles/c0kdrx68xego', avgGuesses: 46 },
-    { index: 24, category: 'Science', id: 'news/articles/c0l9jd432pgo', avgGuesses: 49 },
-    { index: 25, category: 'Arts', id: 'news/articles/c14v53j2lkpo', avgGuesses: 37 },
-    { index: 26, category: 'World', id: 'news/articles/c14v5625l8eo', avgGuesses: 43 },
-    { index: 27, category: 'UK', id: 'news/articles/c14v5e2gz52o', avgGuesses: 36 },
-    { index: 28, category: 'Tech', id: 'news/articles/c14v5xjp03yo', avgGuesses: 47 },
-    { index: 29, category: 'Business', id: 'news/articles/c14vm1k8ny1o', avgGuesses: 40 },
-    { index: 30, category: 'Politics', id: 'news/articles/c14vm2p7yp3o', avgGuesses: 45 },
-    { index: 31, category: 'World', id: 'news/articles/c14vmd385jno', avgGuesses: 51 },
-    { index: 32, category: 'UK', id: 'news/articles/c1572gzkyd9o', avgGuesses: 39 },
-    { index: 33, category: 'Science', id: 'news/articles/c157d5pq9g5o', avgGuesses: 48 },
-    { index: 34, category: 'Tech', id: 'news/articles/c157x2g8p4zo', avgGuesses: 43 },
-    { index: 35, category: 'Arts', id: 'news/articles/c17rgd8e9gjo', avgGuesses: 35 },
-    { index: 36, category: 'World', id: 'news/articles/c17x8kxgd8vo', avgGuesses: 49 },
-    { index: 37, category: 'UK', id: 'news/articles/c17xvnvzyd5o', avgGuesses: 38 },
-    { index: 38, category: 'Politics', id: 'news/articles/c1dz6wgn2w9o', avgGuesses: 47 },
-    { index: 39, category: 'Tech', id: 'news/articles/c1dz9erp33go', avgGuesses: 42 },
-    { index: 40, category: 'Science', id: 'news/articles/c1dz9nnp52eo', avgGuesses: 50 },
-    { index: 41, category: 'Arts', id: 'news/articles/c1e4923vz7zo', avgGuesses: 36 },
-    { index: 42, category: 'World', id: 'news/articles/c1e49x686e6o', avgGuesses: 44 },
-    { index: 43, category: 'UK', id: 'news/articles/c1kpgkel7v3o', avgGuesses: 41 },
-    { index: 44, category: 'Tech', id: 'news/articles/c1kpr0dg130o', avgGuesses: 46 },
-    { index: 45, category: 'Science', id: 'news/articles/c1kprwgzlm0o', avgGuesses: 48 },
-    { index: 46, category: 'Business', id: 'news/articles/c1kprzlljmlo', avgGuesses: 39 },
-    { index: 47, category: 'World', id: 'news/articles/c1lr762v65do', avgGuesses: 52 },
-    { index: 48, category: 'UK', id: 'news/articles/c1lr9dd6z7vo', avgGuesses: 40 },
-    { index: 49, category: 'Tech', id: 'news/articles/c1lr9dp5pp0o', avgGuesses: 45 },
-    { index: 50, category: 'Politics', id: 'news/articles/c1m8kem0nvmo', avgGuesses: 43 },
-    { index: 51, category: 'Science', id: 'news/articles/c1m8kpjp59go', avgGuesses: 47 }
+    { index: 0, category: 'UK', id: 'news/uk-52012432', avgGuesses: 45 }, // PM orders UK lockdown
+    { index: 1, category: 'UK', id: 'news/uk-61585886', avgGuesses: 40 }, // Queen Elizabeth II dies
+    { index: 2, category: 'Politics', id: 'news/articles/c9vjlj1ezpgo', avgGuesses: 50 }, // Zelensky warns EU
+    { index: 3, category: 'World', id: 'news/world-middle-east-56505413', avgGuesses: 48 }, // Suez Canal Blockage
+    { index: 4, category: 'UK', id: 'news/articles/cwygz4n9n2do', avgGuesses: 42 }, // Marble Triceratops Skull
+    { index: 5, category: 'World', id: 'news/articles/cd10ejlpepvo', avgGuesses: 45 }, // Notre Dame Reopening
+    { index: 6, category: 'World', id: 'news/world-us-canada-52834099', avgGuesses: 50 }, // George Floyd / BLM
+    { index: 7, category: 'World', id: 'news/world-us-canada-55554332', avgGuesses: 48 }, // Capitol Riot Jan 6
+    { index: 8, category: 'Science', id: 'news/science-environment-62122847', avgGuesses: 46 }, // James Webb Telescope
+    { index: 9, category: 'Business', id: 'news/business-61224748', avgGuesses: 45 }, // Elon Musk buys Twitter
+    { index: 10, category: 'Tech', id: 'news/technology-63953730', avgGuesses: 44 }, // ChatGPT Launch
+    { index: 11, category: 'UK', id: 'news/uk-56690270', avgGuesses: 42 }, // Prince Philip dies
+    { index: 12, category: 'World', id: 'news/world-europe-64540692', avgGuesses: 50 }, // Turkey Earthquakes
+    { index: 13, category: 'Sport', id: 'sport/football-65839074', avgGuesses: 44 }, // Messi Inter Miami
+    { index: 14, category: 'Entertainment', id: 'news/entertainment-arts-65126848', avgGuesses: 42 }, // Barbie Movie
+    { index: 15, category: 'World', id: 'news/world-us-canada-61923062', avgGuesses: 50 }, // Roe v Wade Overturn
+    { index: 16, category: 'World', id: 'news/world-middle-east-53655134', avgGuesses: 48 }, // Beirut Explosion
+    { index: 17, category: 'World', id: 'news/world-asia-58223701', avgGuesses: 50 }, // Taliban takes Kabul
+    { index: 20, category: 'UK', id: 'news/uk-65505079', avgGuesses: 45 }, // King Charles Coronation
+    { index: 21, category: 'Entertainment', id: 'news/entertainment-arts-60912852', avgGuesses: 38 }, // Will Smith Slap
+    { index: 22, category: 'Entertainment', id: 'news/articles/c88z84n982no', avgGuesses: 41 }, // Oasis Reunion
+    { index: 23, category: 'Sport', id: 'news/articles/c29dle82e1do', avgGuesses: 45 }, // Paris Olympics
+    { index: 24, category: 'World', id: 'news/articles/c720grvze8po', avgGuesses: 46 }, // Titan Sub
+    { index: 25, category: 'World', id: 'news/world-europe-64120023', avgGuesses: 44 }, // Andrew Tate Arrest
+    { index: 26, category: 'Politics', id: 'news/uk-politics-62085732', avgGuesses: 45 }, // Boris Johnson Resigns
+    { index: 27, category: 'Politics', id: 'news/uk-politics-63321528', avgGuesses: 42 }, // Liz Truss Resigns
+    { index: 28, category: 'Sport', id: 'sport/football-64010330', avgGuesses: 35 }, // Argentina World Cup Win
+    { index: 29, category: 'World', id: 'news/world-asia-62088844', avgGuesses: 48 }, // Shinzo Abe Assassination
+    { index: 30, category: 'World', id: 'news/world-us-canada-54854155', avgGuesses: 48 }, // Biden wins Election
+    { index: 31, category: 'World', id: 'news/world-middle-east-67039975', avgGuesses: 55 }, // Gaza Hospital Blast
+    { index: 32, category: 'World', id: 'news/world-us-canada-69083204', avgGuesses: 47 }, // Trump Hush Money
+    { index: 33, category: 'World', id: 'news/world-australia-50951043', avgGuesses: 48 }, // Australia Bushfires
+    { index: 34, category: 'Entertainment', id: 'news/entertainment-arts-56311394', avgGuesses: 42 }, // Meghan Oprah Interview
+    { index: 35, category: 'UK', id: 'news/uk-61404132', avgGuesses: 41 }, // Wagatha Christie Trial
+    { index: 36, category: 'UK', id: 'news/uk-67912389', avgGuesses: 44 }, // Post Office Scandal
+    { index: 37, category: 'Politics', id: 'news/uk-politics-60031804', avgGuesses: 45 }, // Partygate Report
+    { index: 38, category: 'Business', id: 'news/business-63604323', avgGuesses: 48 }, // FTX Collapse
+    { index: 39, category: 'World', id: 'news/world-europe-60506682', avgGuesses: 55 }, // Ukraine Invasion Start
+    { index: 40, category: 'World', id: 'news/world-middle-east-67036733', avgGuesses: 55 }, // October 7 Attack
+    { index: 41, category: 'Science', id: 'news/world-asia-india-66594520', avgGuesses: 46 }, // India Moon Landing
+    { index: 42, category: 'Science', id: 'news/world-us-canada-68748119', avgGuesses: 42 }, // Solar Eclipse 2024
+    { index: 43, category: 'Entertainment', id: 'news/entertainment-arts-68802206', avgGuesses: 44 }, // Taylor Swift Eras Tour
+    { index: 44, category: 'Entertainment', id: 'news/entertainment-arts-66014494', avgGuesses: 42 }, // Elton John Glastonbury
+    { index: 45, category: 'Politics', id: 'news/articles/c977njnvq7no', avgGuesses: 46 }, // Starmer Wins Election
+    { index: 46, category: 'World', id: 'news/articles/cx2y30v7ndjo', avgGuesses: 48 }, // Trump Wins 2024
+    { index: 47, category: 'Tech', id: 'news/business-67459137', avgGuesses: 46 }, // OpenAI Sam Altman Ousted
+    { index: 48, category: 'Science', id: 'news/science-environment-56119902', avgGuesses: 48 }, // Mars Landing Perseverance
+    { index: 49, category: 'Tech', id: 'news/articles/cj7l1v4pvyeo', avgGuesses: 42 }, // Deepfake AI Ban
+    { index: 50, category: 'UK', id: 'news/articles/czxp998rd9ko', avgGuesses: 41 }, // Bondi Bravery
+    { index: 51, category: 'Sport', id: 'sport/football-57451624', avgGuesses: 35 } // Christian Eriksen
 ];
+
+
+
