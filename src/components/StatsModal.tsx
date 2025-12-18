@@ -46,7 +46,7 @@ export const StatsModal: React.FC<StatsModalProps> = ({ isOpen, onClose, stats, 
                 overflowY: 'auto'
             }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #ddd', paddingBottom: '1rem', marginBottom: '1.5rem' }}>
-                    <h2 style={{ margin: 0 }}>Statistics</h2>
+                    <h2 style={{ margin: 0, color: '#bb1919' }}>Redactle BBC Articles Statistics</h2>
                     <button
                         onClick={onClose}
                         style={{

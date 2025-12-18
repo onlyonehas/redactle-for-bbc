@@ -1,0 +1,62 @@
+export interface ArticleMetadata {
+    index: number;
+    category: string;
+    id: string;
+    avgGuesses: number;
+}
+
+export const articleList: ArticleMetadata[] = [
+    { index: 0, category: 'Entertainment', id: 'news/articles/cvgr488vlmmo', avgGuesses: 42 },
+    { index: 1, category: 'Science', id: 'news/articles/cqxqzlrzlx1o', avgGuesses: 28 },
+    { index: 2, category: 'Events', id: 'news/articles/c3v1n95p31go', avgGuesses: 35 },
+    { index: 3, category: 'Business', id: 'news/articles/c3r7d820288o', avgGuesses: 38 },
+    { index: 4, category: 'Science', id: 'news/articles/cde65y7p995o', avgGuesses: 52 },
+    { index: 5, category: 'World', id: 'news/articles/c208qvyq248o', avgGuesses: 45 },
+    { index: 6, category: 'UK', id: 'news/articles/c208zd92780o', avgGuesses: 40 },
+    { index: 7, category: 'UK', id: 'news/uk-61585886', avgGuesses: 40 },
+    { index: 8, category: 'Tech', id: 'news/articles/c20k40x8vdvo', avgGuesses: 42 },
+    { index: 9, category: 'Business', id: 'news/articles/c23e9e3e55no', avgGuesses: 38 },
+    { index: 10, category: 'Politics', id: 'news/articles/c23ezd053j5o', avgGuesses: 46 },
+    { index: 11, category: 'Science', id: 'news/articles/c24689l0570o', avgGuesses: 50 },
+    // Expanded List Starts Here
+    { index: 12, category: 'World', id: 'news/articles/c04v3y1w3q1o', avgGuesses: 45 },
+    { index: 13, category: 'UK', id: 'news/articles/c04vxd5nr31o', avgGuesses: 40 },
+    { index: 14, category: 'Business', id: 'news/articles/c04vxde639wo', avgGuesses: 38 },
+    { index: 15, category: 'Tech', id: 'news/articles/c058vy46231o', avgGuesses: 42 },
+    { index: 16, category: 'Science', id: 'news/articles/c0750djl0zgo', avgGuesses: 50 },
+    { index: 17, category: 'World', id: 'news/articles/c0750m9ze3yo', avgGuesses: 48 },
+    { index: 18, category: 'UK', id: 'news/articles/c075j3ezvrgo', avgGuesses: 35 },
+    { index: 19, category: 'Tech', id: 'news/articles/c075jyvn8ljo', avgGuesses: 44 },
+    { index: 20, category: 'Business', id: 'news/articles/c075m75p2ero', avgGuesses: 39 },
+    { index: 21, category: 'World', id: 'news/articles/c0kdr3vdxx1o', avgGuesses: 52 },
+    { index: 22, category: 'UK', id: 'news/articles/c0kdrpg8vgyo', avgGuesses: 41 },
+    { index: 23, category: 'Politics', id: 'news/articles/c0kdrx68xego', avgGuesses: 46 },
+    { index: 24, category: 'Science', id: 'news/articles/c0l9jd432pgo', avgGuesses: 49 },
+    { index: 25, category: 'Arts', id: 'news/articles/c14v53j2lkpo', avgGuesses: 37 },
+    { index: 26, category: 'World', id: 'news/articles/c14v5625l8eo', avgGuesses: 43 },
+    { index: 27, category: 'UK', id: 'news/articles/c14v5e2gz52o', avgGuesses: 36 },
+    { index: 28, category: 'Tech', id: 'news/articles/c14v5xjp03yo', avgGuesses: 47 },
+    { index: 29, category: 'Business', id: 'news/articles/c14vm1k8ny1o', avgGuesses: 40 },
+    { index: 30, category: 'Politics', id: 'news/articles/c14vm2p7yp3o', avgGuesses: 45 },
+    { index: 31, category: 'World', id: 'news/articles/c14vmd385jno', avgGuesses: 51 },
+    { index: 32, category: 'UK', id: 'news/articles/c1572gzkyd9o', avgGuesses: 39 },
+    { index: 33, category: 'Science', id: 'news/articles/c157d5pq9g5o', avgGuesses: 48 },
+    { index: 34, category: 'Tech', id: 'news/articles/c157x2g8p4zo', avgGuesses: 43 },
+    { index: 35, category: 'Arts', id: 'news/articles/c17rgd8e9gjo', avgGuesses: 35 },
+    { index: 36, category: 'World', id: 'news/articles/c17x8kxgd8vo', avgGuesses: 49 },
+    { index: 37, category: 'UK', id: 'news/articles/c17xvnvzyd5o', avgGuesses: 38 },
+    { index: 38, category: 'Politics', id: 'news/articles/c1dz6wgn2w9o', avgGuesses: 47 },
+    { index: 39, category: 'Tech', id: 'news/articles/c1dz9erp33go', avgGuesses: 42 },
+    { index: 40, category: 'Science', id: 'news/articles/c1dz9nnp52eo', avgGuesses: 50 },
+    { index: 41, category: 'Arts', id: 'news/articles/c1e4923vz7zo', avgGuesses: 36 },
+    { index: 42, category: 'World', id: 'news/articles/c1e49x686e6o', avgGuesses: 44 },
+    { index: 43, category: 'UK', id: 'news/articles/c1kpgkel7v3o', avgGuesses: 41 },
+    { index: 44, category: 'Tech', id: 'news/articles/c1kpr0dg130o', avgGuesses: 46 },
+    { index: 45, category: 'Science', id: 'news/articles/c1kprwgzlm0o', avgGuesses: 48 },
+    { index: 46, category: 'Business', id: 'news/articles/c1kprzlljmlo', avgGuesses: 39 },
+    { index: 47, category: 'World', id: 'news/articles/c1lr762v65do', avgGuesses: 52 },
+    { index: 48, category: 'UK', id: 'news/articles/c1lr9dd6z7vo', avgGuesses: 40 },
+    { index: 49, category: 'Tech', id: 'news/articles/c1lr9dp5pp0o', avgGuesses: 45 },
+    { index: 50, category: 'Politics', id: 'news/articles/c1m8kem0nvmo', avgGuesses: 43 },
+    { index: 51, category: 'Science', id: 'news/articles/c1m8kpjp59go', avgGuesses: 47 }
+];

@@ -10,7 +10,7 @@ export const GuessFeedback: React.FC<GuessFeedbackProps> = ({ lastGuess }) => {
     return (
         <div style={{
             position: 'fixed',
-            bottom: '80px', // Above the input bar
+            bottom: '120px', // Raised higher to avoid obstruction
             left: '50%',
             transform: 'translateX(-50%)',
             backgroundColor: '#333',
@@ -25,7 +25,11 @@ export const GuessFeedback: React.FC<GuessFeedbackProps> = ({ lastGuess }) => {
             animation: 'fadeIn 0.3s ease-out'
         }}>
             <span>
-                Found <strong style={{ color: '#fff3c4' }}>{lastGuess.count}</strong> instance{lastGuess.count !== 1 ? 's' : ''} of <strong>"{lastGuess.word}"</strong>
+                {lastGuess.count > 0 ? (
+                    <>Found <strong style={{ color: '#fff3c4' }}>{lastGuess.count}</strong> instance{lastGuess.count !== 1 ? 's' : ''} of <strong>"{lastGuess.word}"</strong></>
+                ) : (
+                    <><strong>"{lastGuess.word}"</strong> not found in article</>
+                )}
             </span>
         </div>
     );

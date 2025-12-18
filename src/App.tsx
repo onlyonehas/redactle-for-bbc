@@ -44,6 +44,16 @@ function App() {
   const [isHintMode, setIsHintMode] = useState(false);
   const [revealedTokenKey, setRevealedTokenKey] = useState<string | null>(null);
 
+  // Auto-dismiss last guess feedback
+  useEffect(() => {
+    if (lastGuess) {
+      const timer = setTimeout(() => {
+        setLastGuess(null);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [lastGuess]);
+
   useEffect(() => {
     const loadArticle = async () => {
       let loadedArticle;
@@ -197,6 +207,7 @@ function App() {
         onNewGame={startNewGame}
         onDailyGame={startDailyGame}
         onGiveUp={handleGiveUp}
+        onHome={startDailyGame}
         isLoading={isLoading}
       />
 

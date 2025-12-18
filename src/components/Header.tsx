@@ -6,10 +6,11 @@ interface HeaderProps {
     onNewGame: () => void;
     onDailyGame: () => void;
     onGiveUp: () => void;
+    onHome: () => void;
     isLoading: boolean;
 }
 
-export const Header: React.FC<HeaderProps> = ({ articleId, headlineRevealed, onHelp, onStats, onNewGame, onDailyGame, onGiveUp, isLoading }) => {
+export const Header: React.FC<HeaderProps> = ({ articleId, headlineRevealed, onHelp, onStats, onNewGame, onDailyGame, onGiveUp, onHome, isLoading }) => {
     return (
         <header style={{
             backgroundColor: '#bb1919', // BBC Red
@@ -27,15 +28,26 @@ export const Header: React.FC<HeaderProps> = ({ articleId, headlineRevealed, onH
                 height: '4rem',
                 padding: '0 1rem'
             }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <div
+                    onClick={onHome}
+                    style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '1rem',
+                        cursor: 'pointer'
+                    }}
+                    title="Go to Home (Daily Challenge)"
+                >
                     {/* BBC Logo Block */}
                     <div style={{
                         backgroundColor: 'white',
                         padding: '0 0.5rem',
                         height: '2rem',
                         display: 'flex',
-                        alignItems: 'center'
+                        alignItems: 'center',
+                        gap: '0.4rem'
                     }}>
+                        <img src="/logo.png" alt="Redactle BBC Articles Logo" style={{ height: '1.5rem', display: 'block' }} />
                         <span style={{
                             color: '#bb1919',
                             fontWeight: 900,
@@ -45,13 +57,7 @@ export const Header: React.FC<HeaderProps> = ({ articleId, headlineRevealed, onH
                     </div>
 
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                        <span style={{ fontWeight: 700, fontSize: '1.4rem' }}>NEWS</span>
-                        <span style={{
-                            borderLeft: '1px solid rgba(255,255,255,0.3)',
-                            height: '1.5rem',
-                            margin: '0 0.5rem'
-                        }}></span>
-                        <span style={{ fontWeight: 400, fontSize: '1.4rem', letterSpacing: '0.5px' }}>REDACTLE</span>
+                        <span style={{ fontWeight: 700, fontSize: '1.4rem' }}>ARTICLES</span>
                     </div>
                 </div>
 

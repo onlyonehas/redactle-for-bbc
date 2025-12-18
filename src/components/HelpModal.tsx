@@ -48,8 +48,8 @@ export const HelpModal: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
                     ✕
                 </button>
 
-                <h2 style={{ fontSize: '2rem', marginBottom: '1.5rem', borderBottom: '1px solid #eee', paddingBottom: '0.5rem' }}>
-                    How to Play
+                <h2 style={{ fontSize: '1.8rem', marginBottom: '1.5rem', borderBottom: '1px solid #bb1919', paddingBottom: '0.5rem', color: '#bb1919' }}>
+                    How to Play Redactle BBC Articles
                 </h2>
 
                 <div style={{ fontSize: '1.1rem', lineHeight: '1.6' }}>
