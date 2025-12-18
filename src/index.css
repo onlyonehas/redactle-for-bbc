@@ -7,30 +7,37 @@
   --bbc-dark-red: #991414;
   --bbc-black: #121212;
   --bbc-white: #ffffff;
-  --bbc-gray: #505050;
+  --bbc-gray: #4a4a4a;
   --bbc-text: #222222;
   --bbc-light-gray: #fdfdfd;
-  --bbc-border: #e2e2e2;
+  --bbc-border: #d2d2d2;
   --bbc-highlight: #fff3c4;
-  /* Light yellow highlight */
+  --bbc-focus: #ffcf00;
+  /* Yellow focus ring like BBC */
 }
 
 body {
   margin: 0;
-  font-family: 'ReithSans', 'Helvetica', 'Arial', sans-serif;
+  font-family: 'ReithSans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   color: var(--bbc-text);
   background-color: var(--bbc-white);
   line-height: 1.6;
-  /* Increased for BBC spacing */
+  font-size: 16px;
+  /* Meets >15px requirement */
 }
 
 h1 {
-  font-size: 2.75rem;
-  /* Larger */
+  font-size: 2.25rem;
   line-height: 1.1;
   font-weight: 700;
   margin-bottom: 0.5em;
   color: var(--bbc-text);
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.75rem;
+  }
 }
 
 /* Layout Grid for Desktop */
@@ -78,23 +85,30 @@ button:hover {
 
 button:focus,
 button:focus-visible {
-  outline: 3px solid #000;
+  outline: 4px solid var(--bbc-focus);
+  outline-offset: 2px;
 }
 
 /* Accessibility for redacted text */
 .redacted {
-  background-color: #e2e2e2;
+  background-color: #d8d8d8;
   color: transparent;
   user-select: none;
-  border-radius: 2px;
-  margin: 0 1px;
+  border-radius: 1px;
+  margin: 0 2px;
   cursor: default;
+  transition: background-color 0.2s;
+}
+
+.redacted:hover {
+  background-color: #c0c0c0;
 }
 
 .revealed {
   background-color: transparent;
   color: var(--bbc-text);
-  font-weight: bold;
+  font-weight: 700;
+  margin: 0 2px;
 }
 
 /* Layout Utilities */

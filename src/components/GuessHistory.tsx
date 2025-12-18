@@ -45,18 +45,15 @@ export const GuessHistory: React.FC<GuessHistoryProps> = ({ guesses, onHighlight
                 </h3>
                 <button
                     onClick={onToggleHint}
-                    title="Click, then click a word to reveal it"
+                    title="Hint Mode: Click to activate, then click a word to reveal it"
+                    className="sidebar-hint-btn"
                     style={{
-                        padding: '0.3rem 0.6rem',
-                        fontSize: '0.8rem',
-                        cursor: 'pointer',
-                        backgroundColor: isHintMode ? '#ffd700' : 'transparent',
-                        color: isHintMode ? 'black' : '#bb1919',
-                        border: '1px solid #bb1919',
-                        fontWeight: isHintMode ? 'bold' : 'normal'
+                        backgroundColor: isHintMode ? '#ffcf00' : 'transparent',
+                        color: isHintMode ? '#121212' : '#bb1919',
+                        border: isHintMode ? '1px solid #000' : '1px solid #bb1919',
                     }}
                 >
-                    Hint
+                    HINT
                 </button>
             </div>
 
@@ -97,6 +94,23 @@ export const GuessHistory: React.FC<GuessHistoryProps> = ({ guesses, onHighlight
                     )}
                 </tbody>
             </table>
+            <style>{`
+                .sidebar-hint-btn {
+                    padding: 0 0.8rem;
+                    font-size: 0.75rem;
+                    cursor: pointer;
+                    font-weight: 700;
+                    letter-spacing: 0.05em;
+                    min-height: 2.25rem;
+                    transition: opacity 0.2s;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .sidebar-hint-btn:hover {
+                    opacity: 0.8;
+                }
+            `}</style>
         </div>
     );
 };

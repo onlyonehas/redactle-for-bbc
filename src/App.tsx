@@ -197,20 +197,24 @@ function App() {
         onNewGame={startNewGame}
         onDailyGame={startDailyGame}
         onGiveUp={handleGiveUp}
+        isLoading={isLoading}
       />
 
       {isHintMode && (
         <div style={{
-          backgroundColor: '#ffd700',
-          color: 'black',
+          backgroundColor: '#ffcf00', // BBC Focus Yellow
+          color: '#121212',
           textAlign: 'center',
-          padding: '0.5rem',
-          fontWeight: 'bold',
+          padding: '0.75rem',
+          fontWeight: '700',
           position: 'sticky',
           top: '0',
-          zIndex: 900
+          zIndex: 900,
+          fontSize: '0.9rem',
+          letterSpacing: '0.02em',
+          borderBottom: '2px solid #000'
         }}>
-          HINT MODE: Click any hidden word to reveal it!
+          💡 HINT MODE: CLICK A HIDDEN WORD TO REVEAL IT
         </div>
       )}
 

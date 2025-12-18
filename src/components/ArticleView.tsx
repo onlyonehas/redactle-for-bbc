@@ -23,7 +23,8 @@ const Token: React.FC<{
     onWordClick?: (word: string) => void;
     isRevealed?: boolean;
     onToggleReveal?: (key: string) => void;
-}> = ({ token, tokenKey, guesses, highlightedWord, isGiveUp, isHintMode, onWordClick, isRevealed, onToggleReveal }) => {
+    isHintable?: boolean;
+}> = ({ token, tokenKey, guesses, highlightedWord, isGiveUp, isHintMode, onWordClick, isRevealed, onToggleReveal, isHintable = true }) => {
 
     if (!token.isWord) {
         return <span>{token.text}</span>;
@@ -58,7 +59,13 @@ const Token: React.FC<{
         }
     };
 
-    const cursor = isHintMode && hidden ? 'crosshair' : (hidden ? 'pointer' : 'default');
+    const canBeHinted = isHintMode && hidden && isHintable;
+    const cursor = canBeHinted ? 'crosshair' : (isHintMode && hidden ? 'not-allowed' : (hidden ? 'pointer' : 'default'));
+
+    if (isHintMode && hidden && !isHintable) {
+        style.opacity = 0.6;
+        style.filter = 'grayscale(1)';
+    }
     const showCount = isRevealed;
 
     const obfiscatedText = hidden ? token.text.replaceAll(/./g, "*") : token.text;
@@ -68,7 +75,7 @@ const Token: React.FC<{
             className={classes}
             style={{ ...style, cursor, position: 'relative', display: 'inline-block' }}
             onClick={handleClick}
-            title={hidden ? (isHintMode ? "Click to reveal word" : "Click to see letter count") : undefined}
+            title={hidden ? (isHintMode ? (isHintable ? "Click to reveal word" : "This word must be guessed!") : "Click to see letter count") : undefined}
         >
             <span style={{ opacity: hidden && showCount ? 0 : 1 }}>{hidden ? obfiscatedText : token.text}</span>
             {hidden && showCount && (
@@ -97,6 +104,15 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, guesses, high
     const isHeadlineSolved = headlineTokens
         .filter(t => t.isWord)
         .every(t => !isRedacted(t.text, guesses));
+
+    const hiddenHeadlineWords = new Set(
+        headlineTokens
+            .filter(t => t.isWord)
+            .map(t => (t.clean || t.text.toLowerCase().replace(/[^a-z0-9]/g, '')))
+            .filter(w => !guesses.has(w))
+    );
+
+    const nonHintableWords = hiddenHeadlineWords.size === 1 ? hiddenHeadlineWords : new Set<string>();
 
     const [categoryRevealed, setCategoryRevealed] = React.useState(false);
 
@@ -132,6 +148,7 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, guesses, high
                             onWordClick={onWordClick}
                             isRevealed={revealedTokenKey === key}
                             onToggleReveal={handleToggleReveal}
+                            isHintable={!nonHintableWords.has(t.clean || t.text.toLowerCase().replace(/[^a-z0-9]/g, ''))}
                         />
                     );
                 })}
@@ -153,27 +170,16 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, guesses, high
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     <span style={{ fontWeight: 700 }}>Category:</span>
                     {categoryRevealed ? (
-                        <span style={{
-                            backgroundColor: 'var(--bbc-red)',
-                            color: 'white',
-                            padding: '0.1rem 0.5rem',
-                            fontWeight: 700
-                        }}>
+                        <span className="category-badge">
                             {article.category.toUpperCase()}
                         </span>
                     ) : (
                         <button
                             onClick={() => setCategoryRevealed(true)}
-                            style={{
-                                fontSize: '0.8rem',
-                                padding: '0.2rem 0.6rem',
-                                backgroundColor: '#f0f0f0',
-                                color: '#333',
-                                border: '1px solid #ccc'
-                            }}
+                            className="reveal-hint-btn"
                             title="Click to reveal category (Hint)"
                         >
-                            Reveal Hint
+                            REVEAL HINT
                         </button>
                     )}
                 </div>
@@ -196,12 +202,39 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, guesses, high
                                     onWordClick={onWordClick}
                                     isRevealed={revealedTokenKey === key}
                                     onToggleReveal={handleToggleReveal}
+                                    isHintable={!nonHintableWords.has(t.clean || t.text.toLowerCase().replace(/[^a-z0-9]/g, ''))}
                                 />
                             );
                         })}
                     </p>
                 ))}
             </div>
+            <style>{`
+                .reveal-hint-btn {
+                    font-size: 0.9rem;
+                    padding: 0 1rem;
+                    background-color: #f2f2f2;
+                    color: #121212;
+                    border: 1px solid #bbb;
+                    font-weight: 700;
+                    min-height: 2.5rem;
+                    cursor: pointer;
+                    letter-spacing: 0.02em;
+                    transition: background-color 0.2s;
+                }
+                .reveal-hint-btn:hover {
+                    background-color: #e5e5e5;
+                    border-color: #999;
+                }
+                .category-badge {
+                    background-color: var(--bbc-red);
+                    color: white;
+                    padding: 0.2rem 0.6rem;
+                    font-weight: 700;
+                    font-size: 0.9rem;
+                    letter-spacing: 0.02em;
+                }
+            `}</style>
         </article>
     );
 };
