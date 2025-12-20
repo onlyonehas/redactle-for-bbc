@@ -5,12 +5,16 @@ export interface ArticleMetadata {
     avgGuesses: number;
 }
 
+/**
+ * Article list - major events that everyone would know
+ * This is the single source of truth, bundled at build time.
+ * To update: modify this list and rebuild the app.
+ */
 export const articleList: ArticleMetadata[] = [
     { index: 0, category: 'UK', id: 'news/uk-52012432', avgGuesses: 45 }, // PM orders UK lockdown
     { index: 1, category: 'UK', id: 'news/uk-61585886', avgGuesses: 40 }, // Queen Elizabeth II dies
     { index: 2, category: 'Politics', id: 'news/articles/c9vjlj1ezpgo', avgGuesses: 50 }, // Zelensky warns EU
     { index: 3, category: 'World', id: 'news/world-middle-east-56505413', avgGuesses: 48 }, // Suez Canal Blockage
-    { index: 4, category: 'UK', id: 'news/articles/cwygz4n9n2do', avgGuesses: 42 }, // Marble Triceratops Skull
     { index: 5, category: 'World', id: 'news/articles/cd10ejlpepvo', avgGuesses: 45 }, // Notre Dame Reopening
     { index: 6, category: 'World', id: 'news/world-us-canada-52834099', avgGuesses: 50 }, // George Floyd / BLM
     { index: 7, category: 'World', id: 'news/world-us-canada-55554332', avgGuesses: 48 }, // Capitol Riot Jan 6
@@ -20,13 +24,11 @@ export const articleList: ArticleMetadata[] = [
     { index: 11, category: 'UK', id: 'news/uk-56690270', avgGuesses: 42 }, // Prince Philip dies
     { index: 12, category: 'World', id: 'news/world-europe-64540692', avgGuesses: 50 }, // Turkey Earthquakes
     { index: 13, category: 'Sport', id: 'sport/football-65839074', avgGuesses: 44 }, // Messi Inter Miami
-    { index: 14, category: 'Entertainment', id: 'news/entertainment-arts-65126848', avgGuesses: 42 }, // Barbie Movie
     { index: 15, category: 'World', id: 'news/world-us-canada-61923062', avgGuesses: 50 }, // Roe v Wade Overturn
     { index: 16, category: 'World', id: 'news/world-middle-east-53655134', avgGuesses: 48 }, // Beirut Explosion
     { index: 17, category: 'World', id: 'news/world-asia-58223701', avgGuesses: 50 }, // Taliban takes Kabul
     { index: 20, category: 'UK', id: 'news/uk-65505079', avgGuesses: 45 }, // King Charles Coronation
     { index: 21, category: 'Entertainment', id: 'news/entertainment-arts-60912852', avgGuesses: 38 }, // Will Smith Slap
-    { index: 22, category: 'Entertainment', id: 'news/articles/c88z84n982no', avgGuesses: 41 }, // Oasis Reunion
     { index: 23, category: 'Sport', id: 'news/articles/c29dle82e1do', avgGuesses: 45 }, // Paris Olympics
     { index: 24, category: 'World', id: 'news/articles/c720grvze8po', avgGuesses: 46 }, // Titan Sub
     { index: 25, category: 'World', id: 'news/world-europe-64120023', avgGuesses: 44 }, // Andrew Tate Arrest
@@ -38,8 +40,6 @@ export const articleList: ArticleMetadata[] = [
     { index: 31, category: 'World', id: 'news/world-middle-east-67039975', avgGuesses: 55 }, // Gaza Hospital Blast
     { index: 32, category: 'World', id: 'news/world-us-canada-69083204', avgGuesses: 47 }, // Trump Hush Money
     { index: 33, category: 'World', id: 'news/world-australia-50951043', avgGuesses: 48 }, // Australia Bushfires
-    { index: 34, category: 'Entertainment', id: 'news/entertainment-arts-56311394', avgGuesses: 42 }, // Meghan Oprah Interview
-    { index: 35, category: 'UK', id: 'news/uk-61404132', avgGuesses: 41 }, // Wagatha Christie Trial
     { index: 36, category: 'UK', id: 'news/uk-67912389', avgGuesses: 44 }, // Post Office Scandal
     { index: 37, category: 'Politics', id: 'news/uk-politics-60031804', avgGuesses: 45 }, // Partygate Report
     { index: 38, category: 'Business', id: 'news/business-63604323', avgGuesses: 48 }, // FTX Collapse
@@ -47,16 +47,20 @@ export const articleList: ArticleMetadata[] = [
     { index: 40, category: 'World', id: 'news/world-middle-east-67036733', avgGuesses: 55 }, // October 7 Attack
     { index: 41, category: 'Science', id: 'news/world-asia-india-66594520', avgGuesses: 46 }, // India Moon Landing
     { index: 42, category: 'Science', id: 'news/world-us-canada-68748119', avgGuesses: 42 }, // Solar Eclipse 2024
-    { index: 43, category: 'Entertainment', id: 'news/entertainment-arts-68802206', avgGuesses: 44 }, // Taylor Swift Eras Tour
-    { index: 44, category: 'Entertainment', id: 'news/entertainment-arts-66014494', avgGuesses: 42 }, // Elton John Glastonbury
     { index: 45, category: 'Politics', id: 'news/articles/c977njnvq7no', avgGuesses: 46 }, // Starmer Wins Election
     { index: 46, category: 'World', id: 'news/articles/cx2y30v7ndjo', avgGuesses: 48 }, // Trump Wins 2024
     { index: 47, category: 'Tech', id: 'news/business-67459137', avgGuesses: 46 }, // OpenAI Sam Altman Ousted
     { index: 48, category: 'Science', id: 'news/science-environment-56119902', avgGuesses: 48 }, // Mars Landing Perseverance
-    { index: 49, category: 'Tech', id: 'news/articles/cj7l1v4pvyeo', avgGuesses: 42 }, // Deepfake AI Ban
-    { index: 50, category: 'UK', id: 'news/articles/czxp998rd9ko', avgGuesses: 41 }, // Bondi Bravery
     { index: 51, category: 'Sport', id: 'sport/football-57451624', avgGuesses: 35 } // Christian Eriksen
 ];
+
+/**
+ * Get the article list
+ * This is bundled at build time - no runtime fetching required
+ */
+export function getArticleList(): ArticleMetadata[] {
+    return articleList;
+}
 
 
 

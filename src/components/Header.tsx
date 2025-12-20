@@ -1,85 +1,129 @@
 interface HeaderProps {
-    articleId: number;
-    headlineRevealed: boolean;
-    onHelp: () => void;
-    onStats: () => void;
-    onNewGame: () => void;
-    onDailyGame: () => void;
-    onGiveUp: () => void;
-    onHome: () => void;
-    isLoading: boolean;
+  articleId: number;
+  headlineRevealed: boolean;
+  onHelp: () => void;
+  onStats: () => void;
+  onNewGame: () => void;
+  onDailyGame: () => void;
+  onGiveUp: () => void;
+  onHome: () => void;
+  isLoading: boolean;
 }
 
-export const Header: React.FC<HeaderProps> = ({ articleId, headlineRevealed, onHelp, onStats, onNewGame, onDailyGame, onGiveUp, onHome, isLoading }) => {
-    return (
-        <header style={{
-            backgroundColor: '#bb1919', // BBC Red
-            color: 'white',
-            borderBottom: '1px solid #991414',
-            marginBottom: '1.5rem',
-            fontFamily: 'Helvetica, Arial, sans-serif'
-        }}>
-            <div style={{
-                maxWidth: '1100px',
-                margin: '0 auto',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                height: '4rem',
-                padding: '0 1rem'
-            }}>
-                <div
-                    onClick={onHome}
-                    style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '1rem',
-                        cursor: 'pointer'
-                    }}
-                    title="Go to Home (Daily Challenge)"
-                >
-                    {/* BBC Logo Block */}
-                    <div style={{
-                        backgroundColor: 'white',
-                        padding: '0 0.5rem',
-                        height: '2rem',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '0.4rem'
-                    }}>
-                        <img src="/logo.png" alt="Redactle BBC Articles Logo" style={{ height: '1.5rem', display: 'block' }} />
-                        <span style={{
-                            color: '#bb1919',
-                            fontWeight: 900,
-                            fontSize: '1.2rem',
-                            letterSpacing: '-0.5px'
-                        }}>BBC</span>
-                    </div>
+export const Header: React.FC<HeaderProps> = ({
+  articleId,
+  headlineRevealed,
+  onHelp,
+  onStats,
+  onNewGame,
+  onDailyGame,
+  onGiveUp,
+  onHome,
+  isLoading,
+}) => {
+  return (
+    <header
+      style={{
+        backgroundColor: '#bb1919', // BBC Red
+        color: 'white',
+        borderBottom: '1px solid #991414',
+        marginBottom: '1.5rem',
+        fontFamily: 'Helvetica, Arial, sans-serif',
+      }}
+    >
+      <div
+        style={{
+          maxWidth: '1100px',
+          margin: '0 auto',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          height: '6rem',
+          padding: '0 1rem',
+        }}
+      >
+        <div
+          onClick={onHome}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '1.5rem',
+            cursor: 'pointer',
+            height: '100%',
+          }}
+          title="Go to Home (Daily Challenge)"
+        >
+          {/* BBC Logo - Overlay on Red Background */}
+          <div
+            style={{
+              backgroundColor: '#bb1919',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: '0 1rem',
+              height: '100%',
+              overflow: 'hidden',
+            }}
+          >
+            <img
+              src={`${import.meta.env.BASE_URL}logo.png`}
+              alt="Redactle BBC Articles Logo"
+              style={{
+                height: '110%',
+                maxHeight: '110%',
+                width: 'auto',
+                display: 'block',
+                objectFit: 'contain',
+              }}
+            />
+          </div>
 
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                        <span style={{ fontWeight: 700, fontSize: '1.4rem' }}>ARTICLES</span>
-                    </div>
-                </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <span style={{ fontWeight: 700, fontSize: '1.4rem' }}>
+              REDACTLE BBC ARTICLES
+            </span>
+          </div>
+        </div>
 
-                <div className="header-actions">
-                    <span className="article-id" title={`Article ID: ${articleId}`}>#{articleId}</span>
-                    <button onClick={onStats} className="header-btn" title="Statistics">STATS</button>
-                    <button onClick={onHelp} className="header-btn" title="How to play">HELP</button>
-                    <button onClick={onNewGame} className="header-btn" title="Start a random game">NEW</button>
-                    <button onClick={onDailyGame} className="header-btn" title="Play today's challenge">DAILY</button>
-                    {!headlineRevealed && (
-                        <button
-                            onClick={onGiveUp}
-                            className="header-btn give-up-btn"
-                            disabled={isLoading}
-                            title={isLoading ? "Loading article..." : "Reveal the entire article"}
-                        >
-                            GIVE UP
-                        </button>
-                    )}
-                </div>
-            </div>
-            <style>{`
+        <div className="header-actions">
+          <span className="article-id" title={`Article ID: ${articleId}`}>
+            #{articleId}
+          </span>
+          <button onClick={onStats} className="header-btn" title="Statistics">
+            STATS
+          </button>
+          <button onClick={onHelp} className="header-btn" title="How to play">
+            HELP
+          </button>
+          <button
+            onClick={onNewGame}
+            className="header-btn"
+            title="Start a random game"
+          >
+            NEW
+          </button>
+          <button
+            onClick={onDailyGame}
+            className="header-btn"
+            title="Play today's challenge"
+          >
+            DAILY
+          </button>
+          {!headlineRevealed && (
+            <button
+              onClick={onGiveUp}
+              className="header-btn give-up-btn"
+              disabled={isLoading}
+              title={
+                isLoading ? 'Loading article...' : 'Reveal the entire article'
+              }
+            >
+              GIVE UP
+            </button>
+          )}
+        </div>
+      </div>
+      <style>{`
                 .header-actions {
                     font-size: 1rem;
                     display: flex;
@@ -129,6 +173,13 @@ export const Header: React.FC<HeaderProps> = ({ articleId, headlineRevealed, onH
                         gap: 0.75rem;
                         align-items: flex-start !important;
                     }
+                    header > div > div:first-child {
+                        width: 100%;
+                    }
+                    header > div > div:first-child > img {
+                        max-height: 4rem !important;
+                        height: auto !important;
+                    }
                     .header-actions {
                         width: 100%;
                         justify-content: flex-start;
@@ -146,6 +197,6 @@ export const Header: React.FC<HeaderProps> = ({ articleId, headlineRevealed, onH
                     }
                 }
             `}</style>
-        </header>
-    );
+    </header>
+  );
 };
